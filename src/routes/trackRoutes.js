@@ -10,9 +10,12 @@ router.use(requireAuth);
 
 // ROUTES
 router.get("/tracks", async (req, res) => {
-  const tracks = await Track.find({ userId: req.user._id });
-
-  res.send(tracks);
+  try {
+    const tracks = await Track.find({ userId: req.user._id });
+    res.send(tracks);
+  } catch (err) {
+    res.status(422).send(err);
+  }
 });
 
 export { router as TrackRoutes };
