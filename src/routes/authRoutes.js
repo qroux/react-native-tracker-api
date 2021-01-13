@@ -2,8 +2,6 @@ import express from "express";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 
-import requireAuth from "../middlewares/requireAuth.js";
-
 const User = mongoose.model("User");
 const router = express.Router();
 

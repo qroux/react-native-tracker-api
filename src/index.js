@@ -1,11 +1,12 @@
 import * as User from "./models/User.js";
+import * as Track from "./models/Track.js";
 
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
 
-import requireAuth from "./middlewares/requireAuth.js";
 import { AuthRoutes } from "./routes/authRoutes.js";
+import { TrackRoutes } from "./routes/trackRoutes.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ app.use(bodyParser.json());
 
 // routes
 app.use(AuthRoutes);
+app.use(TrackRoutes);
 
 const mongoUri =
   "mongodb+srv://admin:passwordpassword@cluster0.k9ofs.mongodb.net/<dbname>?retryWrites=true&w=majority";
