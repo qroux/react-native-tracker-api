@@ -18,4 +18,20 @@ router.get("/tracks", async (req, res) => {
   }
 });
 
+router.post("/tracks", async (req, res) => {
+  const { name, locations } = req.body;
+
+  if (!name || !locations) {
+    return res.status(422).send({ error: "Missing name or locations" });
+  }
+
+  try {
+    const track = new Track({ userId: req.user._id, name, locations });
+    await track.save();
+    res.send(track);
+  } catch (err) {
+    res.status(422).send({ error: err.message });
+  }
+});
+
 export { router as TrackRoutes };
