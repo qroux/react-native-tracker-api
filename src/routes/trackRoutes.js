@@ -26,11 +26,7 @@ router.post("/tracks", async (req, res) => {
   }
 
   try {
-    const track = new Track({
-      userId: req.user._id,
-      name: "Depuis l'api",
-      locations,
-    });
+    const track = new Track({ userId: req.user._id, name, locations });
     await track.save();
     res.send(track);
   } catch (err) {
